@@ -1,3 +1,4 @@
+
 class CartePizzeria:
     def __init__(self):
         self.__pizzas = []
@@ -9,10 +10,15 @@ class CartePizzeria:
         return len(self)
 
     def add_pizza(self, pizza):
+        for p in self.__pizzas:
+            if p.name == pizza.name:
+                raise Exception("CartePizzeriaException")
+            return False
         self.__pizzas.append(pizza)
 
     def remove_pizza(self, pizza):
-        if pizza not in self.__pizzas:
-            raise Exception("CartePizzeriaException")
-        else:
-            self.__pizzas.remove(pizza)
+        for p in self.__pizzas:
+            if p.name == pizza:
+                self.__pizzas.remove(p)
+                return True
+        raise Exception("CartePizzeriaException")
